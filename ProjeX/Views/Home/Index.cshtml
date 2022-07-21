@@ -1,0 +1,22 @@
+﻿@model List<ProjeX.Models.FilmResimleri>
+@{
+    ViewBag.Title = "Sinemax";
+
+}
+
+<div class="row" style="margin-top:10px;">
+    <h1>Vizyondaki Filmler</h1>
+    @foreach (var item in Model)
+    {
+        string Imagedata = Convert.ToBase64String(item.Image);
+        <div class="col-md-3">
+            <img src="data:image;base64,@Imagedata" style="width:250px;height:400px"/>
+
+            <a href="/Ticket/Message?filmid=@item.FilmId"> <h4>@item.Filmler.Name</h4></a>
+
+            <h5 style="display:block;text-align:center">@item.Filmler.ViewDate</h5>
+
+        </div>
+    }
+</div>
+

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SinemaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BİLET">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bilet" Type="nvarchar(max)" />
+    <Property Name="BiletId" Type="smallint" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="Username" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Filmler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="ViewDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="FilmResimleri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="FilmId" Type="smallint" />
+  </EntityType>
+  <Association Name="FK__BİLET__BiletId__49C3F6B7">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="0..1" />
+    <End Role="BİLET" Type="Self.BİLET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BİLET">
+        <PropertyRef Name="BiletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FilmResim__FilmI__36B12243">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="0..1" />
+    <End Role="FilmResimleri" Type="Self.FilmResimleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FilmResimleri">
+        <PropertyRef Name="FilmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SinemaxModelStoreContainer">
+    <EntitySet Name="BİLET" EntityType="Self.BİLET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Filmler" EntityType="Self.Filmler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FilmResimleri" EntityType="Self.FilmResimleri" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BİLET__BiletId__49C3F6B7" Association="Self.FK__BİLET__BiletId__49C3F6B7">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="BİLET" EntitySet="BİLET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FilmResim__FilmI__36B12243" Association="Self.FK__FilmResim__FilmI__36B12243">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="FilmResimleri" EntitySet="FilmResimleri" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SinemaxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BİLET">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bilet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BiletId" Type="Int16" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK__BİLET__BiletId__49C3F6B7" FromRole="BİLET" ToRole="Filmler" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Filmler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ViewDate" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="BİLET" Relationship="Self.FK__BİLET__BiletId__49C3F6B7" FromRole="Filmler" ToRole="BİLET" />
+    <NavigationProperty Name="FilmResimleri" Relationship="Self.FK__FilmResim__FilmI__36B12243" FromRole="Filmler" ToRole="FilmResimleri" />
+  </EntityType>
+  <EntityType Name="FilmResimleri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FilmId" Type="Int16" />
+    <NavigationProperty Name="Filmler" Relationship="Self.FK__FilmResim__FilmI__36B12243" FromRole="FilmResimleri" ToRole="Filmler" />
+  </EntityType>
+  <Association Name="FK__BİLET__BiletId__49C3F6B7">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="0..1" />
+    <End Role="BİLET" Type="Self.BİLET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BİLET">
+        <PropertyRef Name="BiletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FilmResim__FilmI__36B12243">
+    <End Role="Filmler" Type="Self.Filmler" Multiplicity="0..1" />
+    <End Role="FilmResimleri" Type="Self.FilmResimleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filmler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FilmResimleri">
+        <PropertyRef Name="FilmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SinemaxEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BİLET" EntityType="Self.BİLET" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Filmler" EntityType="Self.Filmler" />
+    <EntitySet Name="FilmResimleri" EntityType="Self.FilmResimleri" />
+    <AssociationSet Name="FK__BİLET__BiletId__49C3F6B7" Association="Self.FK__BİLET__BiletId__49C3F6B7">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="BİLET" EntitySet="BİLET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FilmResim__FilmI__36B12243" Association="Self.FK__FilmResim__FilmI__36B12243">
+      <End Role="Filmler" EntitySet="Filmler" />
+      <End Role="FilmResimleri" EntitySet="FilmResimleri" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

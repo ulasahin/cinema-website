@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SinemaxModelStoreContainer" CdmEntityContainer="SinemaxEntities">
+    <EntitySetMapping Name="BİLET">
+      <EntityTypeMapping TypeName="SinemaxModel.BİLET">
+        <MappingFragment StoreEntitySet="BİLET">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Bilet" ColumnName="Bilet" />
+          <ScalarProperty Name="BiletId" ColumnName="BiletId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="SinemaxModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Filmler">
+      <EntityTypeMapping TypeName="SinemaxModel.Filmler">
+        <MappingFragment StoreEntitySet="Filmler">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ViewDate" ColumnName="ViewDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FilmResimleri">
+      <EntityTypeMapping TypeName="SinemaxModel.FilmResimleri">
+        <MappingFragment StoreEntitySet="FilmResimleri">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="FilmId" ColumnName="FilmId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
